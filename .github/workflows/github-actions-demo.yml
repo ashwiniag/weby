@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: List files in the repository
         run: |
-          ls ${{ github.workspace }}
+          ls -al  ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: docker build
         run: |
