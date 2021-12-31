@@ -18,6 +18,18 @@
 #        run: |
 #          docker push
 
+---
+name: "workflow"
+
+'on':
+  push:
+    branches:
+      - main
+    tags:
+      - "*"
+  pull_request:
+    branches:
+      - main
 
 jobs:
   ci:
