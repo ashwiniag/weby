@@ -1,18 +1,46 @@
-name: GitHub Actions Demo
-on:
+#name: GitHub Actions Demo
+#on:
+#  push:
+#
+#jobs:
+#  Explore-GitHub-Actions:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: List files in the repository
+#        run: |
+#          ls -al  ${{ github.workspace }}
+#      - run: echo "This job's status is ${{ job.status }}."
+#      - name: docker build
+#        run: |
+#          docker build -t weby_ufg .
+#      - name: image upload to ECR
+#        run: |
+#          docker push
+
+
+name: "workflow"
+
+'on':
   push:
-    paths:
-    - 'config/**' 
-    - '.github/workflows/*'
+    branches:
+      - main
+    tags:
+      - "*"
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+  integration:
+    name: "CI"
+    runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v2
-      - name: List files in the repository
-        run: |
-          ls -al  ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: docker build
-        run: |
-          docker build -t webyco . 
+      - name: "Checkout Code"
+        uses: "actions/checkout@v2"
+
+      - name: "Lint code"
+        run: echo "Linting repository"
+
+      - name: "Run unit tests"
+        run: echo "Running unit tests"
